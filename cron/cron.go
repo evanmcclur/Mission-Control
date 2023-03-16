@@ -1,8 +1,9 @@
 package cron
 
+// Represents the result of running a cron job
 type Status uint
 
-// Define status constants
+// Status constants that represent the status of a job after it runs
 const (
 	Success Status = 0
 	Failed  Status = 1
@@ -35,4 +36,13 @@ func (status Status) String() string {
 	}
 
 	return statuses[status]
+}
+
+func (jk JobKey) String() string {
+	// NOTE: update this whenever adding a new cron job
+	keys := [...]string{
+		"SDC",
+	}
+
+	return keys[jk]
 }

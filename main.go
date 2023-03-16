@@ -11,13 +11,14 @@ import (
 
 func main() {
 	// example use of cron manager
-	sdcj := jobs.SpaceDotComJob{LastRun: nil}
+	sdcj := &jobs.SpaceDotComJob{}
 	cm := cron.CronManager{Crons: map[cron.JobKey]cron.CronJob{}}
 	cm.RegisterJob(sdcj)
 
 	fmt.Println("Listening on port 8080...")
-	http.HandleFunc("/articles", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(sdcj.String())
+	http.HandleFunc("/jobs", func(w http.ResponseWriter, r *http.Request) {
+		status, _ := sdcj.Run()
+		fmt.Println(status)
 	})
 	_ = http.ListenAndServe(":8080", nil)
 }

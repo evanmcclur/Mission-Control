@@ -22,6 +22,14 @@ type Article struct {
 	StrapLine string
 	// When the article was published
 	Published time.Time
-	// If this article is archived it will persist in the db
+	// Link to the article
+	Link string
+	// If this article is archived it will persist in the db. Set to false by default.
 	Archived bool
+}
+
+func NewArticle() *Article {
+	return &Article{
+		Archived: false,
+	}
 }
