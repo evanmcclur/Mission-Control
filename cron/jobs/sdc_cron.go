@@ -3,7 +3,7 @@ package jobs
 import (
 	"time"
 
-	"cron"
+	"github.com/evanmcclur/mission-control/cron"
 )
 
 // This cron is used to scrape articles off of space.com

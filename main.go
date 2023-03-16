@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	// "github.com/go-co-op/gocron"
-	"cron"
-	"cron/jobs"
+	"github.com/evanmcclur/mission-control/cron"
+	"github.com/evanmcclur/mission-control/cron/jobs"
 )
 
 func main() {
