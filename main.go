@@ -6,13 +6,18 @@ import (
 
 	// "github.com/go-co-op/gocron"
 	"cron"
+	"cron/jobs"
 )
 
 func main() {
-	status := cron.Success
+	// example use of cron manager
+	sdcj := jobs.SpaceDotComJob{LastRun: nil}
+	cm := cron.CronManager{Crons: map[cron.JobKey]cron.CronJob{}}
+	cm.RegisterJob(sdcj)
+
 	fmt.Println("Listening on port 8080...")
 	http.HandleFunc("/articles", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(status.String())
+		fmt.Println(sdcj.String())
 	})
 	_ = http.ListenAndServe(":8080", nil)
 }
