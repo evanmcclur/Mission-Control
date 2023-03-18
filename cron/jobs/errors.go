@@ -9,8 +9,8 @@ type HttpResponseError struct {
 }
 
 type HTMLParseError struct {
-	Job   string
-	Cause string
+	Job          string
+	ErrorMessage string
 }
 
 // Constructs a new HttpResponseError
@@ -23,5 +23,18 @@ func NewHttpResponseError(statusCode int, status string) error {
 
 func (e *HttpResponseError) Error() string {
 	err := fmt.Sprintf("Status code error: %d %s", e.StatusCode, e.Status)
+	return err
+}
+
+// Constructs a new HTMLParseError
+func NewHTMLParseError(job string, errorString string) error {
+	return &HTMLParseError{
+		Job:          job,
+		ErrorMessage: errorString,
+	}
+}
+
+func (e *HTMLParseError) Error() string {
+	err := fmt.Sprintf("Job: %s Error: %s", e.Job, e.ErrorMessage)
 	return err
 }

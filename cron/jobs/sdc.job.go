@@ -79,10 +79,10 @@ func (s *SpaceDotComJob) Run() (cron.Status, error) {
 	return cron.Success, nil
 }
 
-func (s SpaceDotComJob) Key() cron.JobKey {
+func (s *SpaceDotComJob) Key() cron.JobKey {
 	return cron.SDC
 }
 
-func (s SpaceDotComJob) String() string {
+func (s *SpaceDotComJob) String() string {
 	return "space.com"
 }
