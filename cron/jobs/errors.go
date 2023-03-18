@@ -2,12 +2,13 @@ package jobs
 
 import "fmt"
 
-// Custom Http error that is thrown when the status code is not 200
+// Custom Http error that is returned when the status code is not 200
 type HttpResponseError struct {
 	StatusCode int
 	Status     string
 }
 
+// Custom HTML parse error that is returned when an error has occurred while parsing/scraping HTML
 type HTMLParseError struct {
 	Job          string
 	ErrorMessage string
