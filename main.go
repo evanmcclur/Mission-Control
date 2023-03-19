@@ -5,19 +5,15 @@ import (
 	"net/http"
 
 	// "github.com/go-co-op/gocron"
-	"github.com/evanmcclur/mission-control/cron"
-	"github.com/evanmcclur/mission-control/cron/jobs"
+	"github.com/evanmcclur/mission-control/handlers"
 )
 
 func main() {
-	// example use of cron manager
-	sdcj := jobs.SpaceDotComJob{LastRun: nil}
-	cm := cron.CronManager{Crons: map[cron.JobKey]cron.CronJob{}}
-	cm.RegisterJob(sdcj)
+	router := handlers.GetRouter()
 
 	fmt.Println("Listening on port 8080...")
-	http.HandleFunc("/articles", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(sdcj.String())
-	})
-	_ = http.ListenAndServe(":8080", nil)
+	// http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	// 	fmt.Println("Hello, World")
+	// })
+	_ = http.ListenAndServe(":8080", router)
 }
